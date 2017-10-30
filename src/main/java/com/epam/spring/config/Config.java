@@ -1,20 +1,14 @@
 package com.epam.spring.config;
 
+import com.epam.spring.aspect.SomeAspect;
+import com.epam.spring.bean.Cat;
+import com.epam.spring.bean.Dog;
 import com.epam.spring.bean.SomeBean;
 import com.epam.spring.bean.StateBean;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.FilterType;
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.*;
 
 @Configuration
-@ComponentScan(basePackages = "com.epam.spring",
-        excludeFilters = {@ComponentScan.Filter(
-                value=Component.class,
-                type = FilterType.ANNOTATION
-        )}
-)
+@EnableAspectJAutoProxy(proxyTargetClass=true)
 public class Config {
     @Bean
     public SomeBean someBean(){
@@ -24,5 +18,20 @@ public class Config {
     @Bean
     public StateBean stateBean(){
         return new StateBean();
+    }
+
+    @Bean
+    public SomeAspect someAspect() {
+        return new SomeAspect();
+    }
+
+    @Bean
+    public Cat cat(){
+        return new Cat();
+    }
+
+    @Bean
+    public Dog dog(){
+        return new Dog();
     }
 }
