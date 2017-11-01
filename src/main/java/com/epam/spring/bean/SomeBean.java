@@ -21,6 +21,7 @@ public class SomeBean implements InitializingBean, DisposableBean {
 
     @Value("Main Bean")
     private String name;
+
     @Autowired
     private StateBean stateBean;
 
